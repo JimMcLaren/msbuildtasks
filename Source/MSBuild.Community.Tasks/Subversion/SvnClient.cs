@@ -134,6 +134,17 @@ namespace MSBuild.Community.Tasks.Subversion
             set { _verbose = value; }
         }
 
+        private bool _quiet;
+
+        /// <summary>
+        /// Gets or sets Quiet mode
+        /// </summary>
+        public bool Quiet
+        {
+            get { return _quiet; }
+            set { _quiet = value; }
+        }
+
         private bool _force;
 
         /// <summary>
@@ -368,6 +379,9 @@ namespace MSBuild.Community.Tasks.Subversion
 
             if (_verbose)
                 builder.AppendFormat(_switchBooleanFormat, "verbose");
+
+            if (_quiet)
+                builder.AppendFormat(_switchBooleanFormat, "quiet");
 
             if (!string.IsNullOrEmpty(_arguments))
                 builder.AppendFormat(" {0}", _arguments);
